@@ -9,7 +9,7 @@
  * adjunta de la licencia en todo momento.
  * Licencia: http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
-    class ERR404
+    class ERR405
         {
             /*
              * Esta clase contiene los atributos y procedimientos para la creacion
@@ -25,9 +25,9 @@
                      * Declaracion de constructor para inicializar los elementos
                      * del mensaje a mostrar para usuario;
                      */
-                    $this->MsgTitulo = "<b>Er404: MODULO NO ENCONTRADO";
-                    $this->MSgCuerpo = "El modulo solicitado no se encuentra disponible dentro del directorio ";
-                    $this->MSgCuerpo .= "de recursos del sistema. Por favor contacte al administrador.";
+                    $this->MsgTitulo = "<b>Er405: PARAMETROS INCOMPLETOS";
+                    $this->MSgCuerpo = "El sistema no ha podido procesar su solicitud debido a que existen datos ";
+                    $this->MSgCuerpo .= "cuyo valor no ha sido definido. Por favor contacte al administrador.";
                     }
                     
             public function drawUI()
@@ -47,6 +47,6 @@
                     }        
             }
     
-    $objERR404 = new ERR404();
+    $objERR404 = new ERR405();
     echo $objERR404->drawUI();
 ?>

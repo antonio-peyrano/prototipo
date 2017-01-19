@@ -1,6 +1,6 @@
 <?php
 /*
- * Micrositio-Phoenix v1.0 Software para gestion de la planeación operativa.
+ * Prototipo v1.0.0 Software base para desarrollo de sistemas.
  * PHP v5
  * Autor: Prof. Jesus Antonio Peyrano Luna <antonio.peyrano@live.com.mx>
  * Nota aclaratoria: Este programa se distribuye bajo los terminos y disposiciones
@@ -25,17 +25,6 @@
     $username="5d7k5g==";
     $password="1OXW3t7Qpqmm";
     $SitioWeb="http://localhost:8081/ecole/index.php";
-    /*
-     * Para ejecucion en sitio quite las acotaciones de comentario.
-     */
-     
-    /*
-    $servername='5uDhpJ+andTo2OPd4eLWpKDS4tw=';
-    $dbname='1aTUo6WaoaejqaDU39jF4eHi3OPe4Q==';
-    $username='1aTUo6WaoaejqaA=';
-    $password='1OXW3t7Qpqmm';
-    $SitioWeb="http://peycom.byethost5.com/index.php";
-    */
 
     /*$codex= new codificador();
     echo $codex->encrypt("ecole", "ouroboros");*/

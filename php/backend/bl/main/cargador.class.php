@@ -1,11 +1,25 @@
 <?php
+/*
+ * Prototipo v1.0.0 Software base para desarrollo de sistemas.
+ * PHP v5
+ * Autor: Prof. Jesus Antonio Peyrano Luna <antonio.peyrano@live.com.mx>
+ * Nota aclaratoria: Este programa se distribuye bajo los terminos y disposiciones
+ * definidos en la GPL v3.0, debidamente incluidos en el repositorio original.
+ * Cualquier copia y/o redistribucion del presente, debe hacerse con una copia
+ * adjunta de la licencia en todo momento.
+ * Licencia: http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */
     header('Content-Type: text/html; charset=ISO-8859-1'); //Forzar la codificación a ISO-8859-1.
     include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/bl/codificador.class.php");
     include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/dal/conectividad.class.php"); //Se carga la referencia a la clase de conectividad.
-    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/config.php"); //Se carga la referencia de los atributos de configuraci�n.
+    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/config.php"); //Se carga la referencia de los atributos de configuracion.
     
     class cargador
         {
+            /*
+             * Esta clase contiene los atributos y procedimientos necesarios para crear un entorno
+             * sandbox para la interaccion con los modulos del sistema.
+             */
             private $Modulo = '';
             private $lreq = '';
             private $idUsuario = 0;
@@ -207,8 +221,17 @@
                                             
                                             /*
                                              * En caso contrario, se redirecciona a la URL obtenida.
-                                             */                                            
-                                            include_once ($_SERVER['DOCUMENT_ROOT'].$URL);
+                                             */
+                                            if(!file_exists($_SERVER['DOCUMENT_ROOT'].$URL))
+                                                {
+                                                    //VALIDACION DE UBICACION EN DIRECTORIOS: FALLA.
+                                                    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/frontend/notificaciones/ERROR404.php");
+                                                    }
+                                            else
+                                                {
+                                                    //VALIDACION DE UBICACION EN DIRECTORIOS: EXITOSA.
+                                                    include_once ($_SERVER['DOCUMENT_ROOT'].$URL);
+                                                    }                                                                                                                                            
                                             }                                            
                                     }
                             else
@@ -229,12 +252,12 @@
                              */
                             $URL = $this->getURLModulo($this->Modulo);
                             
-                            if($URL == '')
+                            if(($URL == '')||(!file_exists($_SERVER['DOCUMENT_ROOT'].$URL)))
                                 {
                                     /*
                                      * En caso de no contar con una URL valida, se redirecciona a una pagina de ERROR 404
                                      */
-                                    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/frontend/notificaciones/noAutorizado.php");
+                                    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/frontend/notificaciones/ERROR404.php");
                                     }
                             else
                                 {
@@ -256,10 +279,12 @@
                         <input id="lreq" type="text" value="'.$cargador->getlreq().'">
                     </div>
                 </head>
-                <body>';
+                <body>
+                    <div id="sandbox">';
             
-                $cargador->UIResponse();
+                    $cargador->UIResponse();
             
-    echo        '</body>
+    echo            '</div>
+                </body>
             </html>';            
 ?>

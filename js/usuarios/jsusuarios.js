@@ -1,0 +1,280 @@
+/**
+ * 
+ */
+
+    function guardarUsuario(url,parametro)
+        {
+            /*
+             * Esta función valida que los datos para ser almacenados en el registro sean correctos.
+             */	
+            var error= 0;
+		
+            if(document.getElementById("Usuario").value.toString() == "")
+                {
+                    //En caso de no ocurrir un error de validación, se asigna el valor de paso.
+                    error = error+1;			
+                    }
+		
+            if(document.getElementById("Clave").value.toString() == "")
+                {
+                    //En caso de no ocurrir un error de validación, se asigna el valor de paso.
+                    error = error+1;
+                    }
+		
+            if(document.getElementById("Correo").value.toString() == "")
+                {
+                    //En caso de no ocurrir un error de validación, se asigna el valor de paso.
+                    error = error+1;			
+                    }
+		
+            if(document.getElementById("idNivel").value.toString() == "-1")
+                {
+                    //En caso de no ocurrir un error de validación, se asigna el valor de paso.
+                    error = error+1;			
+                    }
+		
+            if(error > 0)
+                {
+                    /*
+                     * En caso de ocurrir un error de validación, se notifica al usuario.
+                     */
+                    alert("Existen campos pendientes por completar");
+			         }
+	       else
+                {
+                    /*
+                     * En caso que la validación de campos sea satisfactoria.
+                     */
+                    cargar(url,parametro,'sandbox');		
+                    }
+            }
+
+    function modulosID()
+		{
+			/*
+			 * Esta función obtiene los ID de los modulos seleccionados
+			 * por el usuario.
+			 */    	
+			var checkboxes = $('.check');
+			var temp = '-1'; 
+ 
+			for (var x=0; x < checkboxes.length; x++) 
+				{
+					if (checkboxes[x].checked) 
+						{
+							temp = temp + '%' + checkboxes[x].value.toString();
+							}
+					}
+			
+			return temp;
+			}
+		
+    function nonModulosID()
+		{
+			/*
+			 * Esta función obtiene los ID de los modulos no seleccionados
+			 * por el usuario.
+			 */    
+			var checkboxes = $('.check');
+			var temp = '-1'; 
+			
+			for (var x=0; x < checkboxes.length; x++) 
+				{
+					if (!checkboxes[x].checked) 
+						{
+							temp = temp + '%' + checkboxes[x].value.toString();
+							}
+					}
+
+			return temp;
+			}
+
+    function habUsuario()
+    	{
+    		/*
+    		 * Esta función habilita los controles del formulario de usuario.
+    		 */
+    		var checkboxes = $('.check');
+    	
+    		for (var x=0; x < checkboxes.length; x++)
+    			{
+    				checkboxes[x].disabled = false;
+    				}
+    		
+    		document.getElementById('Usuario').disabled = false;
+    		document.getElementById('Clave').disabled = false;
+    		document.getElementById('Correo').disabled = false;
+    		document.getElementById('Pregunta').disabled = false;
+    		document.getElementById('Respuesta').disabled = false;
+    		document.getElementById('idNivel').disabled = false;
+    		document.getElementById('usr_Guardar').style.display="block";
+    		document.getElementById('usr_Borrar').style.display="none";
+    		document.getElementById('usr_Editar').style.display="none";
+    		}
+    
+//DECLARACION DE FUNCIONES A EJECUTARSE SOBRE FORMULARIO DE CATALOGO.    
+/*
+ * El presente segmento de codigo evalua la accion de click sobre el boton de busqueda de datos
+ * para ejecutar la acción de actualización sobre la rejilla de usuarios.
+ */
+    $(document).ready(function() 
+    	{
+        	$("div").click(function(e)
+        		{
+        			e.stopPropagation();
+        			if(e.target.id.substring(0,10) == "usr_buscar")
+        				{
+        					//Si el usuario confirma su solicitud de borrar el registro seleccionado.    			
+        					cargar('./php/frontend/usuarios/catUsuarios.php','?bususuario='+document.getElementById('bususuario').value.toString()+'&buscorreo='+document.getElementById('buscorreo').value.toString(),'busRes');
+        					}
+        		});                 
+    	});
+    
+/*
+ * El presente segmento de codigo evalua la accion de click sobre cualquier elemento con el id visualizar_#
+ * para ejecutar la acción de actualización sobre el registro de una rejilla de datos.
+ */
+	$(document).ready(function()
+    	{
+         	$("div").click(function(e)
+            	{
+            		e.stopPropagation();
+            		if(e.target.id.substring(0,14) == "usr_visualizar")
+            			{
+            				//En caso de coincidir el id con la accion visualizar.
+            				cargar('./php/frontend/usuarios/opUsuarios.php','?id='+e.target.id.substring(15)+'&view=1','sandbox');
+            				}
+            		});                 
+        	});
+
+/*
+ * El presente segmento de codigo evalua la accion de click sobre cualquier elemento con el id add_#
+ * para ejecutar la acción de actualización sobre el registro de una rejilla de datos.
+ */
+	$(document).ready(function()
+		{
+	        $("div").click(function(e)
+	        	{
+	            	e.stopPropagation();
+	            	if(e.target.id.substring(0,7) == "usr_add")
+	                	{
+	                    	//En caso de coincidir el id con la accion agregar.
+	                    	cargar('./php/frontend/usuarios/opUsuarios.php','?id=-1&view=0','sandbox');
+	                    	}
+	        		});                 
+	    	});
+
+/*
+ * El presente segmento de codigo evalua la accion de click sobre cualquier elemento con el id delete_#
+ * para ejecutar la acción de actualización sobre el registro de una rejilla de datos.
+ */
+	$(document).ready(function()
+		{
+	        $("div").click(function(e)
+	        	{
+	            	e.stopPropagation();
+	            	if(e.target.id.substring(0,10) == "usr_delete")
+	                	{
+	                    	//En caso de coincidir el id con la accion delete.
+	                    	var respuesta;
+	                    	respuesta = confirm("¿Esta seguro que desea eliminar el registro seleccionado?");
+	                    	if(respuesta)
+	                        	{
+	                            	//Si el usuario confirma su solicitud de borrar el registro seleccionado.
+	                            	cargar('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+e.target.id.substring(11)+'&accion=EdRS','sandbox');
+	                            	} 		
+	                    	}
+	        	});                 
+	    	});
+
+/*
+ * El presente segmento de codigo evalua la accion de click sobre cualquier elemento con el id edit_#
+ * para ejecutar la acción de actualización sobre el registro de una rejilla de datos.
+ */
+	$(document).ready(function()
+		{
+	        $("div").click(function(e)
+	        	{
+	            	e.stopPropagation();
+	            	if(e.target.id.substring(0,8) == "usr_edit")
+	            		{
+	            			//En caso de coincidir el id con la accion editar.
+	            			cargar('./php/frontend/usuarios/opUsuarios.php','?id='+e.target.id.substring(9)+'&view=2','sandbox');
+	            			}
+	        		});                 
+	    	});
+	
+//DECLARACION DE ACCIONES A EJECUTARSE SOBRE FORMULARIO OPERATIVO.
+/*
+ * El presente segmento de codigo evalua la accion de click sobre el elemento de retorno
+ * pulsado sobre el formulario operativo.
+ */
+	$(document).ready(function()
+		{
+	     	$("div").click(function(e)
+	     		{
+	            	e.stopPropagation();
+	            	if(e.target.id == "usr_Volver")
+	            		{
+	            			//En caso de coincidir el id con la accion volver.
+	            			cargar('./php/frontend/usuarios/busUsuarios.php','','sandbox');
+	            			}
+	            	});                 
+			});
+	
+/*
+ * El presente segmento de codigo evalua la accion de click sobre el elemento de borrado
+ * pulsado sobre el formulario operativo.
+ */
+	$(document).ready(function()
+		{
+		 	$("div").click(function(e)
+		 		{
+		         	e.stopPropagation();
+		            if(e.target.id == "usr_Borrar")
+		            	{
+		            		//En caso de coincidir el id con la accion borrar.
+                    		var respuesta;
+                    		respuesta = confirm("¿Esta seguro que desea eliminar el registro seleccionado?");
+                    		if(respuesta)
+                        		{
+                    				//EL USUARIO CONFIRMO LA OPERACION DE BORRADO.
+                    				cargar('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+document.getElementById('idUsuario').value.toString()+'&accion=EdRS','sandbox');
+                        			}
+		            		}
+		 			});                 
+			});
+
+/*
+ * El presente segmento de codigo evalua la accion de click sobre el elemento de guardado
+ * pulsado sobre el formulario operativo.
+ */
+	$(document).ready(function()
+		{
+			$("div").click(function(e)
+				{
+			     	e.stopPropagation();
+			        if(e.target.id == "usr_Guardar")
+			        	{
+			            	//En caso de coincidir el id con la accion guardar.			        	
+			        		guardarUsuario('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+document.getElementById('idUsuario').value.toString()+'&usuario='+document.getElementById('Usuario').value.toString()+'&clave='+document.getElementById('Clave').value.toString()+'&correo='+document.getElementById('Correo').value.toString()+'&idnivel='+document.getElementById('idNivel').value.toString()+'&pregunta='+document.getElementById('Pregunta').value.toString()+'&respuesta='+document.getElementById('Respuesta').value.toString()+'&status='+document.getElementById('Status').value.toString()+'&nonmod='+nonModulosID()+'&mod='+modulosID()+'&accion=CoER');
+			        		}
+					});                 
+			});
+
+/*
+ * El presente segmento de codigo evalua la accion de click sobre el elemento de edicion
+ * pulsado sobre el formulario operativo.
+ */
+	$(document).ready(function()
+		{
+			$("div").click(function(e)
+				{
+			     	e.stopPropagation();
+			        if(e.target.id == "usr_Editar")
+			        	{
+			            	//En caso de coincidir el id con la accion edicion.
+			        		habUsuario();
+			        		}
+					});                 
+			});		

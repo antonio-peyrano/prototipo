@@ -1,5 +1,14 @@
 <?php
-    
+/*
+ * Prototipo v1.0.0 Software base para desarrollo de sistemas.
+ * PHP v5
+ * Autor: Prof. Jesus Antonio Peyrano Luna <antonio.peyrano@live.com.mx>
+ * Nota aclaratoria: Este programa se distribuye bajo los terminos y disposiciones
+ * definidos en la GPL v3.0, debidamente incluidos en el repositorio original.
+ * Cualquier copia y/o redistribucion del presente, debe hacerse con una copia
+ * adjunta de la licencia en todo momento.
+ * Licencia: http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ */    
     class index
         {
             /*
@@ -70,30 +79,14 @@
                                              
                     $menuBody = '<div id="menu-lateral">
                                     <ul class="navegador">'.
-                                        $this->headItem("item-cabecera-01", "", "./img/config.png", "Parametros Generales").
+                                        $this->headItem("item-cabecera-01", "", "./img/menu/config.png", "Parametros Generales").
                                         '<ul class="subnavegador">'
-                                            .$this->bodyItem("item-cuerpo-01", "cargar('./php/backend/bl/main/cargador.class.php','?modulo=Clientes&lreq=1','escritorio');", "./img/gasolina.png", "Gasolina").
-                                    '</ul></li></ul>
-                                    <ul class="navegador">'.
-                                        $this->headItem("item-cabecera-01", "", "./img/paramplan.png", "Parametros de Planeacion").
-                                        '<ul class="subnavegador">'
-                                            .$this->bodyItem("item-cuerpo-01", "cargar('./php/frontend/programa/busPrograma.php','','escritorio');", "./img/programas.png", "Programas").
-                                    '</ul></li></ul>
-                                    <ul class="navegador">'.
-                                        $this->headItem("item-cabecera-01", "", "./img/foda.gif", "F.O.D.A.").
-                                        '<ul class="subnavegador">'
-                                            .$this->bodyItem("item-cuerpo-01", "cargar('./php/frontend/foda/evaluaciones/busEvaluaciones.php','','escritorio');", "./img/evaluacion.png", "Evaluaciones").
-                                    '</ul></li></ul>
-                                    <ul class="navegador">'.
-                                        $this->headItem("item-cabecera-01", "", "./img/operaciones.png", "Operaciones").
-                                        '<ul class="subnavegador">'
-                                            .$this->bodyItem("item-cuerpo-01", "cargar('./php/frontend/programa/busPrograma.php','','escritorio');", "./img/programas.png", "Programas")
-                                            .$this->bodyItem("item-cuerpo-01", "cargar('./php/frontend/gasconsumo/opGasConsumo.php','','escritorio');", "./img/vehconsumo.png", "Consumo de Combustibles")
-                                            .$this->bodyItem("item-cuerpo-01", "cargar('./php/frontend/foda/usrevafoda/opUsrFODA.php','','escritorio');", "./img/foda.gif", "Evaluacion FODA").
-                                    '</ul></li></ul>
-                                    <ul class="navegador">'.
-                                        $this->headItem("item-cabecera-01", "", "./img/contacto.png", "Contacto").
-                                        $this->headItem("item-cabecera-03", "validarUsuario('./php/backend/bl/main/logout.php','','escritorio');", "./img/logout.png", "Cerrar Sesion").                                        
+                                            .$this->bodyItem("item-cuerpo-01", "cargar('./php/backend/bl/main/cargador.class.php','?modulo=Usuarios&lreq=1','escritorio');", "./img/menu/usuarios.png", "Usuarios")                                            
+                                            .$this->bodyItem("item-cuerpo-01", "cargar('./php/backend/bl/main/cargador.class.php','?modulo=Clientes&lreq=1','escritorio');", "./img/menu/clientes.png", "Clientes").
+                                    '</ul></li></ul>'.
+                                    '<ul class="navegador">'.
+                                        $this->headItem("item-cabecera-01", "", "./img/menu/contacto.png", "Contacto").
+                                        $this->headItem("item-cabecera-03", "validarUsuario('./php/backend/bl/main/logout.php','','escritorio');", "./img/menu/logout.png", "Cerrar Sesion").                                        
                                     '</ul>
                                     <br>
                                     <div id= "profile" class="infousuario">'
@@ -140,16 +133,20 @@
                      * Esta funcion contiene la informaci�n a incluir en la cabecera del html.
                      */
                     $head = '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-                            <link rel="stylesheet" href="./css/menuStyle.css" title="style css" type="text/css" media="screen" charset="utf-8"></style>
+                            <link rel="stylesheet" href="./css/menuStyle.css"></style>
                             <link rel="stylesheet" href="./css/divLogin.css"></style>
                             <link rel="stylesheet" href="./css/jssor.css"></style>
+                            <link rel="stylesheet" href="./css/queryStyle.css"></style>
+                            <link rel="stylesheet" href="./css/dgstyle.css"></style>
+                            <link rel="stylesheet" href="./css/notificaciones.css"></style>                        
                             <link rel="icon" type="image/png" href="./img/icologo.png" />
                             <title>eCole</title>
                             <script type="text/javascript" src="./js/jquery/jquery-1.9.1.js"></script>
                             <script type="text/javascript" src="./js/jquery/jquery-1.9.1.min.js"></script>
                             <script type="text/javascript" src="./js/jquery/jssor.slider.mini.js"></script>
                             <script type="text/javascript" src="./js/main/jsindex.js"></script>
-                            <script type="text/javascript" src="./js/main/jslogin.js"></script>';
+                            <script type="text/javascript" src="./js/main/jslogin.js"></script>
+                            <script type="text/javascript" src="./js/usuarios/jsusuarios.js"></script>';
                     return $head;
                     }                    
 
