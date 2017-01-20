@@ -26,6 +26,12 @@
     $password="1OXW3t7Qpqmm";
     $SitioWeb="http://localhost:8081/ecole/index.php";
 
+    /*$servername="397Y09vK3uXj";
+    $dbname="1aTUo6WaoaejqaDU19LR29c=";
+    $username="5d7k5g==";
+    $password="1OXW3t7Qpqmm";
+    $SitioWeb="http://peycom.byethost5.com/ecole/index.php";*/
+            
     /*$codex= new codificador();
-    echo $codex->encrypt("ecole", "ouroboros");*/
+    echo $codex->encrypt("b5_16825461_ecole", "ouroboros");*/
 ?>

@@ -138,15 +138,19 @@
                             <link rel="stylesheet" href="./css/jssor.css"></style>
                             <link rel="stylesheet" href="./css/queryStyle.css"></style>
                             <link rel="stylesheet" href="./css/dgstyle.css"></style>
-                            <link rel="stylesheet" href="./css/notificaciones.css"></style>                        
+                            <link rel="stylesheet" href="./css/notificaciones.css"></style>
+                            <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+                            <link rel="stylesheet" href="./css/font-awesome.min.css" />                        
                             <link rel="icon" type="image/png" href="./img/icologo.png" />
                             <title>eCole</title>
                             <script type="text/javascript" src="./js/jquery/jquery-1.9.1.js"></script>
                             <script type="text/javascript" src="./js/jquery/jquery-1.9.1.min.js"></script>
-                            <script type="text/javascript" src="./js/jquery/jssor.slider.mini.js"></script>
-                            <script type="text/javascript" src="./js/main/jsindex.js"></script>
-                            <script type="text/javascript" src="./js/main/jslogin.js"></script>
-                            <script type="text/javascript" src="./js/usuarios/jsusuarios.js"></script>';
+                            <script type="text/javascript" src="./js/bootstrap/bootstrap.min.js" charset="ISO-8859-1"></script>
+                            <script type="text/javascript" src="./js/bootstrap/bootbox.js" charset="ISO-8859-1"></script>
+                            <script type="text/javascript" src="./js/bootstrap/bootbox.min.js" charset="ISO-8859-1"></script>                            
+                            <script type="text/javascript" src="./js/main/jsindex.js" charset="ISO-8859-1"></script>
+                            <script type="text/javascript" src="./js/main/jslogin.js" charset="ISO-8859-1"></script>
+                            <script type="text/javascript" src="./js/usuarios/jsusuarios.js" charset="ISO-8859-1"></script>';
                     return $head;
                     }                    
 

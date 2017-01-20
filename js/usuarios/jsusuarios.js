@@ -176,13 +176,31 @@
 	            	if(e.target.id.substring(0,10) == "usr_delete")
 	                	{
 	                    	//En caso de coincidir el id con la accion delete.
-	                    	var respuesta;
-	                    	respuesta = confirm("¿Esta seguro que desea eliminar el registro seleccionado?");
-	                    	if(respuesta)
-	                        	{
-	                            	//Si el usuario confirma su solicitud de borrar el registro seleccionado.
-	                            	cargar('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+e.target.id.substring(11)+'&accion=EdRS','sandbox');
-	                            	} 		
+	            			bootbox.confirm(
+			            		{
+			            			message: "¿Confirma que desea borrar el registro?",
+			            			buttons: 
+			            				{
+			            					confirm: 
+			            						{
+			            							label: 'SI',
+			            							className: 'btn-success'
+			            							},
+			            					cancel: 
+			            						{
+			            							label: 'NO',
+			            							className: 'btn-danger'
+			            							}
+			            					},
+			            			callback: function (result)
+			            				{
+			            					if(result)
+			            						{
+			            							//EL USUARIO DECIDE BORRAR EL REGISTRO.
+			            							cargar('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+e.target.id.substring(11)+'&accion=EdRS','sandbox');
+			            							}			            					
+			            					}
+			            			});	                            	
 	                    	}
 	        	});                 
 	    	});
@@ -234,13 +252,31 @@
 		            if(e.target.id == "usr_Borrar")
 		            	{
 		            		//En caso de coincidir el id con la accion borrar.
-                    		var respuesta;
-                    		respuesta = confirm("¿Esta seguro que desea eliminar el registro seleccionado?");
-                    		if(respuesta)
-                        		{
-                    				//EL USUARIO CONFIRMO LA OPERACION DE BORRADO.
-                    				cargar('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+document.getElementById('idUsuario').value.toString()+'&accion=EdRS','sandbox');
-                        			}
+		            		bootbox.confirm(
+			            		{
+			            			message: "¿Confirma que desea borrar el registro?",
+			            			buttons: 
+			            				{
+			            					confirm: 
+			            						{
+			            							label: 'SI',
+			            							className: 'btn-success'
+			            							},
+			            					cancel: 
+			            						{
+			            							label: 'NO',
+			            							className: 'btn-danger'
+			            							}
+			            					},
+			            			callback: function (result)
+			            				{
+			            					if(result)
+			            						{
+			            							//EL USUARIO DECIDE BORRAR EL REGISTRO.
+			            							cargar('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+document.getElementById('idUsuario').value.toString()+'&accion=EdRS','sandbox');
+			            							}			            					
+			            					}
+			            			});
 		            		}
 		 			});                 
 			});
@@ -256,8 +292,32 @@
 			     	e.stopPropagation();
 			        if(e.target.id == "usr_Guardar")
 			        	{
-			            	//En caso de coincidir el id con la accion guardar.			        	
-			        		guardarUsuario('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+document.getElementById('idUsuario').value.toString()+'&usuario='+document.getElementById('Usuario').value.toString()+'&clave='+document.getElementById('Clave').value.toString()+'&correo='+document.getElementById('Correo').value.toString()+'&idnivel='+document.getElementById('idNivel').value.toString()+'&pregunta='+document.getElementById('Pregunta').value.toString()+'&respuesta='+document.getElementById('Respuesta').value.toString()+'&status='+document.getElementById('Status').value.toString()+'&nonmod='+nonModulosID()+'&mod='+modulosID()+'&accion=CoER');
+			            	//En caso de coincidir el id con la accion guardar.
+			            	bootbox.confirm(
+			            		{
+			            			message: "¿Confirma que desea almacenar los cambios?",
+			            			buttons: 
+			            				{
+			            					confirm: 
+			            						{
+			            							label: 'SI',
+			            							className: 'btn-success'
+			            							},
+			            					cancel: 
+			            						{
+			            							label: 'NO',
+			            							className: 'btn-danger'
+			            							}
+			            					},
+			            			callback: function (result)
+			            				{
+			            					if(result)
+			            						{
+			            							//EL USUARIO DECIDE ALMACENAR LOS DATOS.
+			            							guardarUsuario('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+document.getElementById('idUsuario').value.toString()+'&usuario='+document.getElementById('Usuario').value.toString()+'&clave='+document.getElementById('Clave').value.toString()+'&correo='+document.getElementById('Correo').value.toString()+'&idnivel='+document.getElementById('idNivel').value.toString()+'&pregunta='+document.getElementById('Pregunta').value.toString()+'&respuesta='+document.getElementById('Respuesta').value.toString()+'&status='+document.getElementById('Status').value.toString()+'&nonmod='+nonModulosID()+'&mod='+modulosID()+'&accion=CoER');
+			            							}			            					
+			            					}
+			            			});			        		
 			        		}
 					});                 
 			});
