@@ -10,7 +10,8 @@
  * Licencia: http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
     header('Content-Type: text/html; charset=ISO-8859-1'); //Forzar la codificación a ISO-8859-1.
-
+    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/bl/usuarios/usuarios.class.php");
+    
     class busUsuarios
         {
             private $Sufijo = "usr_";
@@ -34,13 +35,48 @@
             }
                 
 
-    $objBusUsuarios = new busUsuarios();
+    $objUsrCtrl = new usrctrl();
+            
+    if($objUsrCtrl->getCredenciales())
+        {
+            /*
+             * Se valida que el usuario tenga sus credenciales cargadas
+             * previo login en el sistema.
+             */
+            $idUsuario = $objUsrCtrl->getidUsuario($_SESSION['usuario'], $_SESSION['clave']);
+            $Modulo = 'Usuarios';
+            
+            if($objUsrCtrl->validarCredenciales($idUsuario, $Modulo)!='')
+                {
+                    /*
+                     * Se valida que las credenciales autoricen la ejecucion del
+                     * modulo solicitado.
+                     */
+                    $objBusUsuarios = new busUsuarios();
 
-    echo '  <html>
-                <center>'.$objBusUsuarios->drawUI().'</center><br>';
+                    echo '  <html>
+                                <center>'.$objBusUsuarios->drawUI().'</center><br>';
 
-    echo '      <div id= "busRes">';
-                    include_once("catUsuarios.php");
-    echo '      </div>
-            </html>';
+                    echo '      <div id= "busRes">';
+                                    include_once("catUsuarios.php");
+                    echo '      </div>
+                            </html>';
+                    }
+            else 
+                {
+                    /*
+                     * En caso que no cuente con credenciales validas, el sistema impedira
+                     * la brecha de seguridad.
+                     */
+                    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/frontend/notificaciones/noAutorizado.php");                    
+                    }
+            }
+    else
+        {
+            /*
+             * En caso que no cuente con credenciales validas, el sistema impedira
+             * la brecha de seguridad.
+             */
+            include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/frontend/notificaciones/noAutorizado.php");
+            }                        
 ?>

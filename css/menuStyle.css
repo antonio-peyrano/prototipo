@@ -9,7 +9,7 @@
             position: relative; /*Respecto al cuerpo*/
             height: inherit; /*Altura respecto al contenedor padre*/
             width: 100%; /*Anchura respecto al contenedor padre*/
-            left: 0; /*Separación del margen izquierdo respecto al padre*/
+            left: 240px; /*Separación del margen izquierdo respecto al padre*/
         	/*overflow: scroll;*/
             /*
              * Conjunto de efectos de transición.
@@ -23,7 +23,7 @@
 
     .contenedor.abrir-menu-lateral
         {
-            left: 240px; /*Separación del margen izquierdo respecto al contenedor*/
+            left: 0px; /*Separación del margen izquierdo respecto al contenedor*/
             }
 
 	.contenedor-principal

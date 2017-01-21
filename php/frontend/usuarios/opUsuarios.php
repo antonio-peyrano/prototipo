@@ -142,15 +142,16 @@
 
     $objOpUsuarios = new opUsuarios();
     
+
     $HTML = '   <html>
                     <head>
                     </head>
                     <body>
                         <center>'.
-                        $objOpUsuarios->drawUI().
+                            $objOpUsuarios->drawUI().
                         '</center>
                     </body>
                 </html>';
-    
-    echo $HTML;
+                    
+    echo $HTML;        
 ?>

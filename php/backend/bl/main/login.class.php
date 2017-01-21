@@ -33,7 +33,7 @@
                                             <div name = "login">
                                                 <p><input id="usuario" required="required" type="text" value="" placeholder="Usuario o Email"/></p>
                                                 <p><input id="clave" required="required" type="password" value="" placeholder="Contraseña"/></p>
-                                                <button id="ingresar" class="button-blue" onclick="validarUsuario(\'./php/backend/bl/main/cargador.class.php\',\'?usuario=\'+document.getElementById(\'usuario\').value.toString()+\'&clave=\'+document.getElementById(\'clave\').value.toString()+\'&modulo=\'+document.getElementById(\'Modulo\').value.toString()+\'&lreq=\'+document.getElementById(\'lreq\').value.toString(),\'escritorio\')"><img src="./img/menu/login.png" width="35" height="35"/>Iniciar Sesion</button>
+                                                <button id="ingresar" class="button-blue" onclick="validarUsuario(\'./php/backend/bl/main/cargador.class.php\',\'?usuario=\'+document.getElementById(\'usuario\').value.toString()+\'&clave=\'+document.getElementById(\'clave\').value.toString(),\'escritorio\')"><img src="./img/menu/login.png" width="35" height="35"/>Iniciar Sesion</button>
                                             </div>
                                             <div class="ayuda-login">
                                                 <p>¿Aun no tiene su cuenta?<a href= "./php/frontend/usraltas/opSolAltUsr.php" target= "_self">De click aqui para registrarse.</a>.</p>
