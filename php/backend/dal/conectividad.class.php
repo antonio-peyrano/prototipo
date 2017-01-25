@@ -16,41 +16,41 @@
  ***********************************************************************************************************
  * Desarrollador: Mtro. Jesus Antonio Peyrano Luna * Ultima modificacion: 27/09/2016                       *
  ***********************************************************************************************************/
-    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/bl/codificador.class.php"); //Se carga la referencia del codificador de cadenas.
+    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/bl/utilidades/codificador.class.php"); //Se carga la referencia del codificador de cadenas.
     
 	class mySQL_conexion
 		{
 			/*
-			 * Esta clase tiene como funci�n establecer los parametros para la conexi�n con la base de datos
-			 * de datos e interactuar con la informaci�n.
+			 * Esta clase tiene como funcion establecer los parametros para la conexion con la base de datos
+			 * de datos e interactuar con la informacion.
 			 */
-			 private $conexion = null; 		#Variable de control de conexi�n (True = Conexi�n OK / False = Falla).
+			 private $conexion = null; 		#Variable de control de conexion (True = Conexion OK / False = Falla).
 			 private $bdConexion = null;	#Variable de control de base de datos (True = Localizada / False = Falla).
 			 private $dataset = null;		#Variable de control para la tupla de datos.
 			 
 			 private $bdName = '';			#El nombre asignado de la base de datos a conectarse.
 			 private $serverName = '';		#El nombre del servidor o su direccionamiento IP.
-			 private $userName = '';		#El usuario con el que haremos conexi�n de la BD.
+			 private $userName = '';		#El usuario con el que haremos conexion de la BD.
 			 private $userPassword = '';	#La clave asignada del usuario para acceder a la BD.
 			 
 			function __construct($user, $pass, $server, $bd)
 				{
 					/*
-					 * Esta funci�n inicializa los parametros para interactuar con las funciones de la clase.
+					 * Esta funcion inicializa los parametros para interactuar con las funciones de la clase.
 					 */
 				    $objCodificador = new codificador();
 				    
 					$this->bdName = $objCodificador->decrypt($bd, "ouroboros"); #El nombre asignado de la base de datos a conectarse.
 					$this->serverName = $objCodificador->decrypt($server, "ouroboros");	#El nombre del servidor o su direccionamiento IP.
-					$this->userName = $objCodificador->decrypt($user, "ouroboros");		#El usuario con el que haremos conexi�n de la BD.
+					$this->userName = $objCodificador->decrypt($user, "ouroboros");		#El usuario con el que haremos conexion de la BD.
 					$this->userPassword = $objCodificador->decrypt($pass, "ouroboros");	#La clave asignada del usuario para acceder a la BD. 
 					}
 					
 			 function conectar($consulta)
 				{
 					/*
-					 * Esta función ejecuta las instrucciones necesarias para conectar con la base de datos
-					 * asi como obtener o modificar la informaci�n mediante la consulta sugerida.
+					 * Esta funcion ejecuta las instrucciones necesarias para conectar con la base de datos
+					 * asi como obtener o modificar la informacion mediante la consulta sugerida.
 					 */
 					 
 					$this->conexion = @mysql_connect($this->serverName, $this->userName, $this->userPassword);
@@ -59,17 +59,17 @@
 						{
 							//En caso de ocurrir un error con la entrada a la base de datos
 							//se notifica al usuario por medio de un mensaje en pantalla.
-							die('No pudo establecerse la conexión con la BD: ' . mysql_error());
+							die('No pudo establecerse la conexion con la BD: ' . mysql_error());
 							}
 					else
 						{
 							//En caso de obtener una conexion satisfactoria con la base de datos
-							//se procede a la ejecución de las instrucciones.
+							//se procede a la ejecucion de las instrucciones.
 							$this->bdConexion = mysql_select_db($this->bdName, $this->conexion);
 							
 							if(!$this->bdConexion)
 								{
-									//En caso de ocurrir un error con la selecci�n de la base de datos
+									//En caso de ocurrir un error con la seleccion de la base de datos
 									//se notifica al usuario por medio de un mensaje en pantalla.								
 									die ('No se puede usar '. $this->bdName .': '. mysql_error());
 									}

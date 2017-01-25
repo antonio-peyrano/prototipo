@@ -17,7 +17,7 @@
              * en el directorio de recursos.
              */
             private $MsgTitulo = '';
-            private $MSgCuerpo = '';
+            private $MsgCuerpo = '';
             
             public function __construct()
                 {
@@ -26,8 +26,8 @@
                      * del mensaje a mostrar para usuario;
                      */
                     $this->MsgTitulo = "<b>Er404: MODULO NO ENCONTRADO";
-                    $this->MSgCuerpo = "El modulo solicitado no se encuentra disponible dentro del directorio ";
-                    $this->MSgCuerpo .= "de recursos del sistema. Por favor contacte al administrador.";
+                    $this->MsgCuerpo = "El modulo solicitado no se encuentra disponible dentro del directorio ";
+                    $this->MsgCuerpo .= "de recursos del sistema. Por favor contacte al administrador.";
                     }
                     
             public function drawUI()
@@ -36,11 +36,11 @@
                      * Esta funcion crea el codigo HTML que sera utilizado para la infertaz
                      * del mensaje a mostrar.
                      */
-                    $HTML = '   <div id="noAutorizado" class="notificacion">
+                    $HTML = '   <div id="error404" class="notificacion">
                                     <div id="cabecera" class="cabecera-notificacion">'
                                         .'<img align="middle" src="./img/notificaciones/error.png" width="32" height="32"/> '.$this->MsgTitulo.
                                     '</div>'
-                                        .$this->MSgCuerpo.
+                                        .$this->MsgCuerpo.
                             '   </div>';
                     
                     return $HTML;

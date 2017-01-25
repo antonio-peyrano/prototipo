@@ -17,7 +17,7 @@
              * ingresar al modulo.
              */
             private $MsgTitulo = '';
-            private $MSgCuerpo = '';
+            private $MsgCuerpo = '';
             
             public function __construct()
                 {
@@ -26,8 +26,8 @@
                      * del mensaje a mostrar para usuario;
                      */
                     $this->MsgTitulo = "<b>Er403: MODULO NO AUTORIZADO";
-                    $this->MSgCuerpo = "El modulo solicitado no se encuentra disponible en su listado de permisos. ";
-                    $this->MSgCuerpo .= "Para mas informacion, por favor contacte al administrador del sistema.";
+                    $this->MsgCuerpo = "El modulo solicitado no se encuentra disponible en su listado de permisos. ";
+                    $this->MsgCuerpo .= "Para mas informacion, por favor contacte al administrador del sistema.";
                     }
                     
             public function drawUI()
@@ -40,7 +40,7 @@
                                     <div id="cabecera" class="cabecera-notificacion">'
                                         .'<img align="middle" src="./img/notificaciones/advertencia.png" width="32" height="32"/> '.$this->MsgTitulo.
                                     '</div>'
-                                        .$this->MSgCuerpo.
+                                        .$this->MsgCuerpo.
                             '   </div>';
                     
                     return $HTML;

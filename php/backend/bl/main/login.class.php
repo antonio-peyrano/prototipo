@@ -36,8 +36,8 @@
                                                 <button id="ingresar" class="button-blue" onclick="validarUsuario(\'./php/backend/bl/main/cargador.class.php\',\'?usuario=\'+document.getElementById(\'usuario\').value.toString()+\'&clave=\'+document.getElementById(\'clave\').value.toString(),\'escritorio\')"><img src="./img/menu/login.png" width="35" height="35"/>Iniciar Sesion</button>
                                             </div>
                                             <div class="ayuda-login">
-                                                <p>¿Aun no tiene su cuenta?<a href= "./php/frontend/usraltas/opSolAltUsr.php" target= "_self">De click aqui para registrarse.</a>.</p>
-                                                <p>¿Olvido su contraseña?<a href= "./php/frontend/usuarios/opRecordar.php" target= "_self">De click aqui para recuperarla.</a>.</p>
+                                                <p>¿Aun no tiene su cuenta?<a id= "linkCrear" href= "#">De click aqui para registrarse.</a>.</p>
+                                                <p>¿Olvido su contraseña?<a id= "linkRecuperar" href= "#">De click aqui para recuperarla.</a>.</p>
                                             </div>
                                         </div>
                                 </div>';

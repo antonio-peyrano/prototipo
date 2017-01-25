@@ -17,7 +17,7 @@
              * en el directorio de recursos.
              */
             private $MsgTitulo = '';
-            private $MSgCuerpo = '';
+            private $MsgCuerpo = '';
             
             public function __construct()
                 {
@@ -26,8 +26,8 @@
                      * del mensaje a mostrar para usuario;
                      */
                     $this->MsgTitulo = "<b>Er405: PARAMETROS INCOMPLETOS";
-                    $this->MSgCuerpo = "El sistema no ha podido procesar su solicitud debido a que existen datos ";
-                    $this->MSgCuerpo .= "cuyo valor no ha sido definido. Por favor contacte al administrador.";
+                    $this->MsgCuerpo = "El sistema no ha podido procesar su solicitud debido a que existen datos ";
+                    $this->MsgCuerpo .= "cuyo valor no ha sido definido. Por favor contacte al administrador.";
                     }
                     
             public function drawUI()
@@ -36,17 +36,17 @@
                      * Esta funcion crea el codigo HTML que sera utilizado para la infertaz
                      * del mensaje a mostrar.
                      */
-                    $HTML = '   <div id="noAutorizado" class="notificacion">
+                    $HTML = '   <div id="error405" class="notificacion">
                                     <div id="cabecera" class="cabecera-notificacion">'
                                         .'<img align="middle" src="./img/notificaciones/error.png" width="32" height="32"/> '.$this->MsgTitulo.
                                     '</div>'
-                                        .$this->MSgCuerpo.
+                                        .$this->MsgCuerpo.
                             '   </div>';
                     
                     return $HTML;
                     }        
             }
     
-    $objERR404 = new ERR405();
-    echo $objERR404->drawUI();
+    $objERR405 = new ERR405();
+    echo $objERR405->drawUI();
 ?>

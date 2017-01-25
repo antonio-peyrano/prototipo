@@ -35,7 +35,7 @@
                 {
                     /*
                      * Definicion de constructor para la clase rejilla,
-                     * se ejecuta la inicialización de atributos.
+                     * se ejecuta la inicializacion de atributos.
                      */
                     $this->dataset = $dataset;
                     $this->titulo = $titulo;
@@ -86,7 +86,7 @@
                      * para el cuerpo de la rejilla de datos.
                      */
                     $tupla = @mysql_fetch_array($this->dataset,MYSQL_ASSOC); //Se organiza la tupla para su manipulacion, haciendo un corrimiento al siguiente elemento.
-                    $rowCount = 1; //Se inicializa la variable de conteo de filas para su despliegue como información.                    
+                    $rowCount = 1; //Se inicializa la variable de conteo de filas para su despliegue como informacion.                    
                     $totRows = mysql_num_rows($this->dataset);
                     $response = null; //Se inicializa la cadena de codigo HTML.
                     

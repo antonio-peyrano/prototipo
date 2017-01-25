@@ -9,7 +9,7 @@
  * adjunta de la licencia en todo momento.
  * Licencia: http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
-    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/bl/codificador.class.php");
+    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/bl/utilidades/codificador.class.php"); //Se carga la referencia a la clase de manejo de encriptado.
     include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/dal/conectividad.class.php"); //Se carga la referencia a la clase de conectividad.
     include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/config.php"); //Se carga la referencia de los atributos de configuracion.
     
@@ -150,7 +150,12 @@
                      * usuario en la ventana previa.
                      * Si es una edicion, los botones borrar y guardar deben verse.
                      * Si es una creacion solo el boton guardar debe visualizarse.
-                     */
+                     */                    
+                    if($cntView == 9)
+                        {
+                            //CASO ESPECIAL: CUANDO EL INVITADO CREA SU USUARIO EN EL SISTEMA.
+                            $this->Sufijo = "scu_";     
+                            }
                     
                     $botonera = '';
                     $btnVolver_V =    '<img align= "right" onmouseover="bigImg(this)" onmouseout="normalImg(this)" src= "./img/grids/volver.png" width= "'.$Width.'" height= "'.$Height.'" alt= "Volver" id="'.$this->Sufijo.'Volver" title= "Volver"/>';
@@ -159,7 +164,7 @@
                     $btnGuardar_H =   '<img align= "right" class="btnConfirm" onmouseover="bigImg(this)" onmouseout="normalImg(this)" src= "./img/grids/save.png" width= "'.$Width.'" height= "'.$Height.'" alt= "Guardar" id="'.$this->Sufijo.'Guardar" title= "Guardar" style="display:none;"/>';
                     $btnEditar_V =    '<img align= "right" onmouseover="bigImg(this)" onmouseout="normalImg(this)" src= "./img/grids/edit.png" width= "'.$Width.'" height= "'.$Height.'" alt= "Editar" id="'.$this->Sufijo.'Editar" title= "Editar"/>';
                         	
-                    if(($cntView == 0)||($cntView == 2))
+                    if(($cntView == 0)||($cntView == 2)||($cntView == 9))
                         {
                             //CASO: CREACION O EDICION DE REGISTRO.
                             $botonera .= $btnGuardar_V.$btnVolver_V;
@@ -297,6 +302,7 @@
                             $HTML .= '<input type="checkbox" class="check" id="modulos[]" name="modulos[]" '.$habCampos.' value="'.$regModulos['idModulo'].'" '.$checkState.'>'.$regModulos['Modulo'].' ';                                    
                             $regModulos = @mysql_fetch_array($dsModulos, MYSQL_ASSOC);
                             }
+                            
                     return $HTML;
                     }                    
             //FIN DE DECLARACION DE PROCEDIMIENTOS APLICABLES AL MODULO opPermisos.php

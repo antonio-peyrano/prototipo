@@ -26,19 +26,29 @@
                     //En caso de no ocurrir un error de validación, se asigna el valor de paso.
                     error = error+1;			
                     }
-		
-            if(document.getElementById("idNivel").value.toString() == "-1")
-                {
-                    //En caso de no ocurrir un error de validación, se asigna el valor de paso.
-                    error = error+1;			
-                    }
-		
+            
+            if(!validarCorreo(document.getElementById("Correo").value.toString()))
+            	{
+                	//En caso de no ocurrir un error de validación, se asigna el valor de paso.
+                	error = error+1;			            	
+            		}
+            
+            if(!parametro.includes('&view=9'))
+            	{
+            		//CASO: SOLICITUD PROCESADA DESDE UN USUARIO EN SISTEMA.
+            		if(document.getElementById("idNivel").value.toString() == "-1")
+            			{
+            				//En caso de no ocurrir un error de validación, se asigna el valor de paso.
+            				error = error+1;			
+            				}
+            		}
+                    	
             if(error > 0)
                 {
                     /*
                      * En caso de ocurrir un error de validación, se notifica al usuario.
                      */
-                    alert("Existen campos pendientes por completar");
+                    bootbox.alert("Existen campos pendientes por completar");
 			         }
 	       else
                 {
@@ -85,10 +95,20 @@
 							temp = temp + '%' + checkboxes[x].value.toString();
 							}
 					}
-
+			
 			return temp;
 			}
 
+    function validarCorreo(correo) 
+    	{
+    		/*
+    		 * Esta funcion evalua una cadena de texto apartir de una expresion regular
+    		 * y verifica si el formato es consistente con una direccion de correo.
+    		 */
+        	expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        	return expr.test(correo);        		
+    		}
+    
     function habUsuario()
     	{
     		/*
@@ -125,7 +145,7 @@
         			if(e.target.id.substring(0,10) == "usr_buscar")
         				{
         					//Si el usuario confirma su solicitud de borrar el registro seleccionado.    			
-        					cargar('./php/frontend/usuarios/catUsuarios.php','?bususuario='+document.getElementById('bususuario').value.toString()+'&buscorreo='+document.getElementById('buscorreo').value.toString(),'busRes');
+        					cargar('./php/frontend/usuarios/sysadmin/catUsuarios.php','?bususuario='+document.getElementById('bususuario').value.toString()+'&buscorreo='+document.getElementById('buscorreo').value.toString(),'busRes');
         					}
         		});                 
     	});
@@ -142,7 +162,7 @@
             		if(e.target.id.substring(0,14) == "usr_visualizar")
             			{
             				//En caso de coincidir el id con la accion visualizar.
-            				cargar('./php/frontend/usuarios/opUsuarios.php','?id='+e.target.id.substring(15)+'&view=1','sandbox');
+            				cargar('./php/frontend/usuarios/sysadmin/opUsuarios.php','?id='+e.target.id.substring(15)+'&view=1','sandbox');
             				}
             		});                 
         	});
@@ -159,7 +179,7 @@
 	            	if(e.target.id.substring(0,7) == "usr_add")
 	                	{
 	                    	//En caso de coincidir el id con la accion agregar.
-	                    	cargar('./php/frontend/usuarios/opUsuarios.php','?id=-1&view=0','sandbox');
+	                    	cargar('./php/frontend/usuarios/sysadmin/opUsuarios.php','?id=-1&view=0','sandbox');
 	                    	}
 	        		});                 
 	    	});
@@ -217,7 +237,7 @@
 	            	if(e.target.id.substring(0,8) == "usr_edit")
 	            		{
 	            			//En caso de coincidir el id con la accion editar.
-	            			cargar('./php/frontend/usuarios/opUsuarios.php','?id='+e.target.id.substring(9)+'&view=2','sandbox');
+	            			cargar('./php/frontend/usuarios/sysadmin/opUsuarios.php','?id='+e.target.id.substring(9)+'&view=2','sandbox');
 	            			}
 	        		});                 
 	    	});
@@ -235,7 +255,7 @@
 	            	if(e.target.id == "usr_Volver")
 	            		{
 	            			//En caso de coincidir el id con la accion volver.
-	            			cargar('./php/frontend/usuarios/busUsuarios.php','','sandbox');
+	            			cargar('./php/frontend/usuarios/sysadmin/busUsuarios.php','','sandbox');
 	            			}
 	            	});                 
 			});
@@ -337,4 +357,81 @@
 			        		habUsuario();
 			        		}
 					});                 
-			});		
+			});
+	
+	//DECLARACION DE FUNCIONES A EJECUTARSE SOBRE FORMULARIO DE SOLICITUD DE CREACION DE USUARIO (INVITADO).
+	
+	/*
+	 * El presente segmento de codigo evalua la accion de click sobre el elemento de guardado
+	 * pulsado sobre el formulario operativo.
+	 */
+		$(document).ready(function()
+			{
+				$("div").click(function(e)
+					{
+				     	e.stopPropagation();
+				        if(e.target.id == "scu_Guardar")
+				        	{
+				            	//En caso de coincidir el id con la accion guardar.
+				            	bootbox.confirm(
+				            		{
+				            			message: "¿Confirma que desea almacenar los cambios?",
+				            			buttons: 
+				            				{
+				            					confirm: 
+				            						{
+				            							label: 'SI',
+				            							className: 'btn-success'
+				            							},
+				            					cancel: 
+				            						{
+				            							label: 'NO',
+				            							className: 'btn-danger'
+				            							}
+				            					},
+				            			callback: function (result)
+				            				{
+				            					if(result)
+				            						{
+				            							//EL USUARIO DECIDE ALMACENAR LOS DATOS.
+				            							guardarUsuario('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+document.getElementById('idUsuario').value.toString()+'&usuario='+document.getElementById('Usuario').value.toString()+'&clave='+document.getElementById('Clave').value.toString()+'&correo='+document.getElementById('Correo').value.toString()+'&pregunta='+document.getElementById('Pregunta').value.toString()+'&respuesta='+document.getElementById('Respuesta').value.toString()+'&status='+document.getElementById('Status').value.toString()+'&captcha='+document.getElementById('captcha_code').value.toString()+'&accion=CoER&view=9');
+				            							}			            					
+				            					}
+				            			});			        		
+				        		}
+						});                 
+				});
+
+	/*
+	 * El presente segmento de codigo evalua la accion de click sobre el elemento de retorno
+	 * pulsado sobre el formulario operativo.
+	 */
+	$(document).ready(function()
+		{
+			$("div").click(function(e)
+				{
+					e.stopPropagation();
+			        if(e.target.id == "scu_Volver")
+			        	{
+			            	//En caso de coincidir el id con la accion volver.
+			        		cargar('./php/frontend/main/login.php','','sandbox');
+			            	}
+					});                 
+			});
+	
+	/*
+	 * El presente segmento de codigo evalua la accion de click sobre el elemento refresh
+	 * pulsado sobre el formulario operativo.
+	 */
+	$(document).ready(function()
+		{
+			$("div").click(function(e)
+				{
+					e.stopPropagation();
+			        if(e.target.id == "rfrCaptcha")
+			        	{
+			            	//En caso de coincidir el id con la accion volver.
+			        		cargar('./php/frontend/utilidades/captcha/opCaptcha.php','','captcha-controll');
+			            	}
+					});                 
+			});	

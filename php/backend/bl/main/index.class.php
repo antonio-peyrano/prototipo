@@ -139,8 +139,8 @@
                             <link rel="stylesheet" href="./css/queryStyle.css"></style>
                             <link rel="stylesheet" href="./css/dgstyle.css"></style>
                             <link rel="stylesheet" href="./css/notificaciones.css"></style>
-                            <link rel="stylesheet" href="./css/bootstrap.min.css"/>
-                            <link rel="stylesheet" href="./css/font-awesome.min.css" />                        
+                            <link rel="stylesheet" href="./css/captcha.css"></style>
+                            <link rel="stylesheet" href="./css/bootstrap.min.css"/></style>                        
                             <link rel="icon" type="image/png" href="./img/icologo.png" />
                             <title>eCole</title>
                             <script type="text/javascript" src="./js/jquery/jquery-1.9.1.js"></script>

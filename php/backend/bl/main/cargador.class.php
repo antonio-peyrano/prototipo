@@ -10,8 +10,8 @@
  * Licencia: http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
     header('Content-Type: text/html; charset=ISO-8859-1'); //Forzar la codificación a ISO-8859-1.
-    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/bl/codificador.class.php");
-    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/bl/main/usrctrl.class.php");
+    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/bl/utilidades/codificador.class.php"); //Se carga la referencia de la clase para control del encriptado.
+    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/bl/utilidades/usrctrl.class.php"); //Se carga la referencia de clase para control de accesos.
     include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/dal/conectividad.class.php"); //Se carga la referencia a la clase de conectividad.
     include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/backend/config.php"); //Se carga la referencia de los atributos de configuracion.
     
@@ -93,6 +93,7 @@
                              * Si el modulo requiere de una validacion de ingreso por medio de usuario
                              * y clave, se generan los controles de UILogin.
                              */
+                                    
                             if($objUsrCntrl->getCredenciales())
                                 {
                                     /*
@@ -108,8 +109,8 @@
                                      * de estas en sistema.
                                      */                                    
                                     $this->idUsuario = $objUsrCntrl->getidUsuario($this->Usuario, $this->Clave);
-                                    }                                   
-                            
+                                    }
+                                                                                                   
                             if($this->idUsuario != 0)
                                 {
                                     /*
@@ -150,8 +151,16 @@
                                      * Si los datos proporcionados por el usuario no arrojan un ID,
                                      * se invoca de nuevo el formulario de inicio de sesion.
                                      */
-                                    
-                                    include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/frontend/main/login.php");
+                                    if(($this->idUsuario == 0)&&(isset($_GET['usuario'])&&isset($_GET['clave'])))
+                                        {
+                                            //SI EL NOMBRE DE USUARIO Y CLAVE NO ARROJAN UN RESULTADO.
+                                            include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/frontend/notificaciones/ERRORUA.php");
+                                            }
+                                    else
+                                        {
+                                            //POR DEFAULT.
+                                            include_once ($_SERVER['DOCUMENT_ROOT']."/ecole/php/frontend/main/login.php");
+                                            }                                                                                
                                     }                            
                             }
                     else
