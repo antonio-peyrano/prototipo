@@ -117,13 +117,7 @@
                                     </div>
                                 </div>
                                 <section class="contenedor-seccion">
-                                </section>
-                                <footer>
-                                    <div id ="informacion">
-                                    <b>Software desarrollado por Peyrano Computacion</b>
-                                    </div>
-                                </footer>
-                                ';
+                                </section>';
                     return $body;
                     }                    
 
@@ -139,6 +133,7 @@
                             <link rel="stylesheet" href="./css/queryStyle.css"></style>
                             <link rel="stylesheet" href="./css/dgstyle.css"></style>
                             <link rel="stylesheet" href="./css/notificaciones.css"></style>
+                            <link rel="stylesheet" href="./css/operativo.css"></style>
                             <link rel="stylesheet" href="./css/captcha.css"></style>
                             <link rel="stylesheet" href="./css/bootstrap.min.css"/></style>                        
                             <link rel="icon" type="image/png" href="./img/icologo.png" />

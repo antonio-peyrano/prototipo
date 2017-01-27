@@ -1,6 +1,6 @@
 @CHARSET "ISO-8859-1";
 
-	.cnt-notificacion
+	.cnt-operativo
 		{
 			width:100%; /*Anchura respecto al cuerpo*/
 			height:100%; /*Altura respecto al cuerpo*/
@@ -19,7 +19,7 @@
 			-moz-opacity:1;opacity:0.5;*/	
 			}
 
-    .notificacion
+    .operativo
         {
             position: absolute;
 			margin: 0px auto;
@@ -27,16 +27,19 @@
         	left:50%;
     		transform: translate(-50%, -50%);
     		-webkit-transform: translate(-50%, -50%);        	
-			width: 400px;        				
+            /*position: relative;
+			margin: 0px auto;
+			width: 400px;*/
+        	width: auto;			
             background: #FF8000;        	
 			border-radius: 13px;
 			font-size: 15px;
         	color: #ffffff;
         	text-shadow: 0 1px gray;
-        	text-align:justify;
+        	text-align:center;
 			}
 
-    .cabecera-notificacion 
+    .cabecera-operativo 
         {
         	display:inline-block;
         	width:100%;
@@ -55,14 +58,14 @@
     		@include box-shadow(0 1px #f5f5f5);
   			}
   			
-	.cuerpo-notificacion
+	.cuerpo-operativo
 		{
 			display:inline-block;
 			position: relative;
-			margin: 12px 12px 12px 12px;
+			margin: 12px 0px 12px 0px;
 			}
 			
-    .pie-notificacion 
+    .pie-operativo 
         {
 			position: relative;
         	display:inline-block;
@@ -79,13 +82,4 @@
     		border-radius: 0 0 12px 12px;
     		@include linear-gradient(top, whiteffd, #eef2f5);
     		@include box-shadow(0 1px #f5f5f5);
-  			}
-  			  			
-	.td-panel
-		{
-	    	font-size: 15px;
-    		font-weight: bold;
-    		color: #ffffff;
-    		text-align: left;
-    		text-shadow: 0 1px gray;
-			}  			
+  			}  			

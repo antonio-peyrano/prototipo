@@ -30,13 +30,15 @@
                     $DIVBody.= '<tr><td class="td-panel">Respuesta </td><td><input id="Respuesta" type="text" value=""></td></tr>';
                     $DIVBody.= '</table></center>';
                                          
-                    $HTML = '   <div id="cntNotificacion" class="cnt-notificacion">
-                                    <div id="recordarCorreo" class="notificacion">
-                                        <div id="cabecera" class="cabecera-notificacion">'
+                    $HTML = '   <div id="cntNotificacion" class="cnt-operativo">
+                                    <div id="recordarCorreo" class="operativo">
+                                        <div id="cabecera" class="cabecera-operativo">'
                                             .'<img align="middle" src="./img/notificaciones/error.png" width="32" height="32"/> '.$DIVHeader.
-                                        '</div>'
-                                        .$DIVBody.
-                                        '<center><img id="btnEnviarRecordatorio" src="./img/menu/enviar.png" onmouseover="bigImg(this)" onmouseout="normalImg(this)" width="32" height="32" title="Enviar recordatorio"/></center>
+                                        '</div>
+                                        <div id="cuerpo" class="cuerpo-operativo">'
+                                            .$DIVBody.
+                                        '</div>
+                                        <center><img id="btnEnviarRecordatorio" src="./img/menu/enviar.png" onmouseover="bigImg(this)" onmouseout="normalImg(this)" width="32" height="32" title="Enviar recordatorio"/></center>
                                     </div>
                                 </div>';
                     

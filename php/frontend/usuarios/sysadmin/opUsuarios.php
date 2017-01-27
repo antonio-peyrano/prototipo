@@ -23,7 +23,9 @@
             private $cntView = 0;
             private $idUsuario = 0;
             private $ClaveCod = '';
-            
+            private $imgTitleURL = './img/menu/usuarios.png';
+            private $Title = 'Usuarios';
+                        
             public function __construct()
                 {
                     /*
@@ -117,25 +119,30 @@
                             $habCampos = '';
                             }                                               
                             
-                    $HTMLBody = '   <div id="statsUser" style="display:none">
-                                        <table>
-                                            <tr><td>idUsuario: </td><td><input id="idUsuario" type="text" value="'.$RegUsuario['idUsuario'].'"></td></tr>
-                                            <tr><td>Status: </td><td><input id="Status" type="text" value="'.$RegUsuario['Status'].'"></td></tr>
-                                        </table>
-                                    </div>
-                                    <div id= "infoUsuario" style= "width:400px; height:600px;">
-                                        <table class="dgTable">
-                                            <tr><th class="dgHeader" colspan= 2">Usuario en el Sistema</th></tr>
-                                            <tr><td class="dgRowsaltTR" width="100px">Usuario:</td><td class="dgRowsnormTR"><input type= "text" id= "Usuario" required= "required" '.$habCampos.' value= "'.$RegUsuario['Usuario'].'"></td></tr>
-                                            <tr><td class="dgRowsaltTR" width="100px">Clave:</td><td class="dgRowsnormTR"><input type= "text" required= "required" id= "Clave" '.$habCampos.' value= "'.$this->ClaveCod.'"></td></tr>
-                                            <tr><td class="dgRowsaltTR" width="100px">Correo:</td><td class="dgRowsnormTR"><input type= "text" required= "required" id= "Correo" '.$habCampos.' value= "'.$RegUsuario['Correo'].'"></td></tr>
-                                            <tr><td class="dgRowsaltTR" width="100px">Nivel:</td><td class="dgRowsnormTR">'.$this->getNiveles($habCampos, $RegUsuario).'</td></tr>
-                                            <tr><td class="dgRowsaltTR" width="100px">Pregunta:</td><td class="dgRowsnormTR">'.$objUsuarios->cargarPreguntas($habCampos, $RegUsuario['Pregunta']).'</td></tr>
-                                            <tr><td class="dgRowsaltTR">Respuesta: </td><td class="dgRowsnormTR"><input id= "Respuesta" type= "text" '.$habCampos.' value= "'.$RegUsuario['Respuesta'].'"></td></tr>
-                                            <tr><td class="dgRowsaltTR">Permisos: </td><td class="dgRowsnormTR">'.$objUsuarios->listaModulos($habCampos, $RegUsuario['idUsuario']).'</td></tr>    
-                                            <tr class="dgHeader" style="text-align:right"><td colspan= "2">'.$objUsuarios->controlBotones("32", "32", $this->getView()).'</td></tr>
-                                        </table>                                   
-                                    </div>';
+                    $HTMLBody = '      <div id="cntOperativo" class="cnt-operativo">
+                                            <div id="statsUser" style="display:none">
+                                                <table>
+                                                    <tr><td>idUsuario: </td><td><input id="idUsuario" type="text" value="'.$RegUsuario['idUsuario'].'"></td></tr>
+                                                    <tr><td>Status: </td><td><input id="Status" type="text" value="'.$RegUsuario['Status'].'"></td></tr>
+                                                </table>
+                                            </div>
+                                            <div id="infoRegistro" class="operativo">
+                                                <div id="cabecera" class="cabecera-operativo">'
+                                                    .'<img align="middle" src="'.$this->imgTitleURL.'" width="32" height="32"/> '.$this->Title.' </div>
+                                                <div id="cuerpo" class="cuerpo-operativo">
+                                                    <table>
+                                                        <tr><td class="td-panel" width="100px">Usuario:</td><td><input type= "text" id= "Usuario" required= "required" '.$habCampos.' value= "'.$RegUsuario['Usuario'].'"></td></tr>
+                                                        <tr><td class="td-panel" width="100px">Clave:</td><td><input type= "text" required= "required" id= "Clave" '.$habCampos.' value= "'.$this->ClaveCod.'"></td></tr>
+                                                        <tr><td class="td-panel" width="100px">Correo:</td><td><input type= "text" required= "required" id= "Correo" '.$habCampos.' value= "'.$RegUsuario['Correo'].'"></td></tr>
+                                                        <tr><td class="td-panel" width="100px">Nivel:</td><td>'.$this->getNiveles($habCampos, $RegUsuario).'</td></tr>
+                                                        <tr><td class="td-panel" width="100px">Pregunta:</td><td>'.$objUsuarios->cargarPreguntas($habCampos, $RegUsuario['Pregunta']).'</td></tr>
+                                                        <tr><td class="td-panel" width="100px">Respuesta: </td><td><input id= "Respuesta" type= "text" '.$habCampos.' value= "'.$RegUsuario['Respuesta'].'"></td></tr>
+                                                        <tr><td class="td-panel" width="100px">Permisos: </td><td class="td-panel">'.$objUsuarios->listaModulos($habCampos, $RegUsuario['idUsuario']).'</td></tr>
+                                                    </table>                                   
+                                                </div>                                                    
+                                                <div id="pie" class="pie-operativo">'.$objUsuarios->controlBotones("32", "32", $this->getView()).'</div>                                                                                                                                                                                   
+                                            </div>
+                                        </div>';
                     return $HTMLBody;                                                
                     }                    
             }

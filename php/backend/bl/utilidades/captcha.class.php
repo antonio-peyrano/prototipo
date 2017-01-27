@@ -17,9 +17,9 @@
             public function __construct()
                 {
                     //Declaracion de funcion constructor (VACIO)
-                    //if($seed!=0){srand($seed);}
                     
-                    $this->captcha = rand(1000,9999);
+                    $this->captcha = dechex(rand(1000,9999));
+                    $this->captcha = strtoupper($this->captcha);
                     
                     if(!isset($_SESSION))
                         {

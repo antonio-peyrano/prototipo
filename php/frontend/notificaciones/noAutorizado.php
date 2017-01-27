@@ -39,9 +39,11 @@
                     $HTML = '   <div id="noAutorizado" class="notificacion">
                                     <div id="cabecera" class="cabecera-notificacion">'
                                         .'<img align="middle" src="./img/notificaciones/advertencia.png" width="32" height="32"/> '.$this->MsgTitulo.
-                                    '</div>'
+                                    '</div>
+                                    <div id="cuerpo" class="cuerpo-notificacion">'
                                         .$this->MsgCuerpo.
-                            '   </div>';
+                            '       </div>
+                                </div>';
                     
                     return $HTML;
                     }        

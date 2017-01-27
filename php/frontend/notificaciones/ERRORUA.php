@@ -39,9 +39,11 @@
                     $HTML = '   <div id="errorUA" class="notificacion">
                                     <div id="cabecera" class="cabecera-notificacion">'
                                         .'<img align="middle" src="./img/notificaciones/usrinvalido.png" width="32" height="32"/> '.$this->MsgTitulo.
-                                    '</div>'
+                                    '</div>
+                                    <div id="cuerpo" class="cuerpo-notificacion">'
                                         .$this->MsgCuerpo.
-                            '       <br><br>
+                            '       </div>
+                                    <br><br>
                                     <center>
                                         <img id="rtnlogin" onmouseover="bigImg(this)" onmouseout="normalImg(this)" src="./img/grids/volver.png" align="middle" width="32" height="32" title="Volver al login"/>
                                     </center>

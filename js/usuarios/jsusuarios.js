@@ -394,7 +394,7 @@
 				            					if(result)
 				            						{
 				            							//EL USUARIO DECIDE ALMACENAR LOS DATOS.
-				            							guardarUsuario('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+document.getElementById('idUsuario').value.toString()+'&usuario='+document.getElementById('Usuario').value.toString()+'&clave='+document.getElementById('Clave').value.toString()+'&correo='+document.getElementById('Correo').value.toString()+'&pregunta='+document.getElementById('Pregunta').value.toString()+'&respuesta='+document.getElementById('Respuesta').value.toString()+'&status='+document.getElementById('Status').value.toString()+'&captcha='+document.getElementById('captcha_code').value.toString()+'&accion=CoER&view=9');
+				            							guardarUsuario('./php/backend/dal/usuarios/dalUsuarios.class.php','?id='+document.getElementById('idUsuario').value.toString()+'&usuario='+document.getElementById('Usuario').value.toString()+'&clave='+document.getElementById('Clave').value.toString()+'&correo='+document.getElementById('Correo').value.toString()+'&pregunta='+document.getElementById('Pregunta').value.toString()+'&respuesta='+document.getElementById('Respuesta').value.toString()+'&status='+document.getElementById('Status').value.toString()+'&captcha='+document.getElementById('captcha_code').value.toString().toUpperCase()+'&accion=CoER&view=9');
 				            							}			            					
 				            					}
 				            			});			        		
