@@ -24,7 +24,13 @@
                     
             public function drawUI()
                 {
-                    $HTML = '<div id= "divBusqueda">
+                    $HTML = '
+                            <div id="paginado" style="display:none">
+                                <input id="pagina" type="text" value="1">
+                                <input id="pgusuario" type="text" value="">
+                                <input id="pgcorrusuario" type="text" value="">
+                            </div>                        
+                            <div id= "divBusqueda">
                                 <table class="queryTable" colspan= "7">
                                     <tr><td class= "queryRowsnormTR" width ="180">Por nombre de usuario completo o parcial: </td><td class= "queryRowsnormTR" width= "250"><input type= "text" id= "bususuario"></td><td rowspan= "2"><img id="'.$this->Sufijo.'buscar" align= "left" src= "./img/grids/view.png" width= "25" height= "25" alt="Buscar"/></td></tr>
                                     <tr><td class= "queryRowsnormTR">Por correo electrónico o parcial: </td><td class= "queryRowsnormTR"><input type= "text" id= "buscorreo"></td><td></td></tr>

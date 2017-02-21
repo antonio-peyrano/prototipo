@@ -25,7 +25,10 @@
            
             private $Usuario = "";
             private $Correo = "";
-            
+            private $Inicio = 0;
+            private $Pagina = 1;
+            private $DisplayRow = 10;
+                        
             public function __construct()
                 {
                     /*
@@ -40,7 +43,19 @@
                     if(isset($_GET['buscorreo']))
                         {
                             $this->Correo = $_GET['buscorreo']; 
-                            }                            
+                            }
+                    if(isset($_GET['pagina']))
+                        {
+                            //Se proporciona referencia de pagina a mostrar.
+                            $this->Pagina = $_GET['pagina'];
+                            $this->Inicio = ($this->Pagina-1)*$this->DisplayRow;
+                            }
+                    else
+                        {
+                            //En caso de no ser proporcionada la pagina.
+                            $this->Inicio = 0;
+                            $this->Pagina = 1;
+                            }                                                        
                     }
 
             public function drawUI()
@@ -55,7 +70,7 @@
                     $objUsuarios = new usuarios();
 
                     $objUsuarios->setCatParametros($this->Usuario, $this->Correo);                    
-                    $Consulta = $objUsuarios->getConsulta().$objUsuarios->evaluaCondicion();
+                    $Consulta = $objUsuarios->getConsulta().$objUsuarios->evaluaCondicion()." limit ".$this->Inicio.",".$this->DisplayRow;
 
                     $dsUsuarios = $objConexion -> conectar($Consulta); //Se ejecuta la consulta.
                     $objGridUsuarios = new myGrid($dsUsuarios, 'Catalogo de Usuarios', $objUsuarios->getSufijo(), 'idUsuario');

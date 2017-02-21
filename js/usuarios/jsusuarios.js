@@ -144,7 +144,9 @@
         			e.stopPropagation();
         			if(e.target.id.substring(0,10) == "usr_buscar")
         				{
-        					//Si el usuario confirma su solicitud de borrar el registro seleccionado.    			
+        					//Si el usuario confirma su solicitud de borrar el registro seleccionado.
+    						document.getElementById('pgusuario').value = document.getElementById('bususuario').value.toString();
+    						document.getElementById('pgcorrusuario').value = document.getElementById('buscorreo').value.toString();        				
         					cargar('./php/frontend/usuarios/sysadmin/catUsuarios.php','?bususuario='+document.getElementById('bususuario').value.toString()+'&buscorreo='+document.getElementById('buscorreo').value.toString(),'busRes');
         					}
         		});                 
@@ -152,7 +154,7 @@
     
 /*
  * El presente segmento de codigo evalua la accion de click sobre cualquier elemento con el id visualizar_#
- * para ejecutar la acción de actualización sobre el registro de una rejilla de datos.
+ * para ejecutar la acción de consulta sobre el registro de una rejilla de datos.
  */
 	$(document).ready(function()
     	{
@@ -186,7 +188,7 @@
 
 /*
  * El presente segmento de codigo evalua la accion de click sobre cualquier elemento con el id delete_#
- * para ejecutar la acción de actualización sobre el registro de una rejilla de datos.
+ * para ejecutar la acción de eliminacion del registro de una rejilla de datos.
  */
 	$(document).ready(function()
 		{
@@ -241,7 +243,46 @@
 	            			}
 	        		});                 
 	    	});
-	
+
+/*
+ * El presente segmento de codigo evalua la accion de click sobre el elemento de retroceso de pagina
+ * sobre el grid de datos.
+ */
+	$(document).ready(function()
+		{
+	    	$("div").click(function(e)
+	    		{
+	    			e.stopPropagation();
+	    			if(e.target.id == "usr_Previous_10")
+	    				{
+	    					//En caso de coincidir con el control de retroceso.
+	    					if((document.getElementById('pagina').value-1)!=0)
+	    						{
+	    							document.getElementById('pagina').value = parseInt(document.getElementById('pagina').value.toString())-1;
+	    							}							
+	    					cargar('./php/frontend/usuarios/sysadmin/catUsuarios.php','?bususuario='+document.getElementById('pgusuario').value.toString()+'&buscorreo='+document.getElementById('pgcorrusuario').value.toString()+'&pagina='+document.getElementById('pagina').value.toString(),'busRes');
+	    					}
+	    			});                 
+			});
+
+/*
+ * El presente segmento de codigo evalua la accion de click sobre el elemento de avance de pagina
+ * sobre el grid de datos.
+ */
+	$(document).ready(function()
+		{
+			$("div").click(function(e)
+	   			{
+	    			e.stopPropagation();
+	    			if(e.target.id == "usr_Next_10")
+	    				{
+	    					//En caso de coincidir con el control de avance.
+	    					document.getElementById('pagina').value = parseInt(document.getElementById('pagina').value.toString())+1;							
+	    					cargar('./php/frontend/usuarios/sysadmin/catUsuarios.php','?bususuario='+document.getElementById('pgusuario').value.toString()+'&buscorreo='+document.getElementById('pgcorrusuario').value.toString()+'&pagina='+document.getElementById('pagina').value.toString(),'busRes');
+	    					}
+	    			});                 
+			});
+		
 //DECLARACION DE ACCIONES A EJECUTARSE SOBRE FORMULARIO OPERATIVO.
 /*
  * El presente segmento de codigo evalua la accion de click sobre el elemento de retorno

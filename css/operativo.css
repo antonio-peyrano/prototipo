@@ -1,5 +1,10 @@
 @CHARSET "ISO-8859-1";
-
+	.tag
+		{
+			width:400px;
+			text-align:justify;
+			}
+			
 	.cnt-operativo
 		{
 			width:100%; /*Anchura respecto al cuerpo*/
